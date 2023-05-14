@@ -57,6 +57,11 @@ imageArray.sort(() => 0.5 - Math.random());
 
 const gridDisplay = document.getElementById('grid');
 
+let winningPrecentage = 0;
+
+let winning = document.getElementById('para');
+let p = document.createElement('p');
+
 function createBoard(){
     imageArray.forEach((img, index) => {
         const card = document.createElement('img');
@@ -68,6 +73,7 @@ function createBoard(){
 }
 
 createBoard();
+console.log(imageArray);
 
 function flipCard(){
     const cardId = this.getAttribute('data-id');
@@ -76,7 +82,8 @@ function flipCard(){
     console.log(cardId);
 
     if (cardChoosen.length === 2) {
-        checkMatch();
+        console.log('cardChoosen=2');
+        setTimeout(checkMatch, 500);    
     }
 } 
 
@@ -86,7 +93,26 @@ function checkMatch(){
 
     const cards = document.querySelectorAll('img');
 
-    if (optionOne.name === optionTwo.name) {
-        
+    console.log('checkMatch');
+
+    if (optionOne.id !== optionTwo.id) {
+        if (optionOne.name === optionTwo.name) {
+            cards[optionOne.id].setAttribute('src', 'Images/tick.png');
+            cards[optionTwo.id].setAttribute('src', 'Images/tick.png');
+            winningPrecentage = winningPrecentage + Math.round(100/6);
+            p.innerHTML = 'You won ' + winningPrecentage + '%';
+            console.log(p);
+            winning.appendChild(p);
+
+        } else {
+            cards[optionOne.id].setAttribute('src', 'Images/question.jpeg');
+            cards[optionTwo.id].setAttribute('src', 'Images/question.jpeg');
+            console.log('Test');
+        } 
+    } else {
+        cards[optionOne.id].setAttribute('src', 'Images/question.jpeg');
     }
+
+    
+    cardChoosen = [];
 }

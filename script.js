@@ -99,8 +99,8 @@ function checkMatch(){
         if (optionOne.name === optionTwo.name) {
             cards[optionOne.id].setAttribute('src', 'Images/tick.png');
             cards[optionTwo.id].setAttribute('src', 'Images/tick.png');
-            winningPrecentage = winningPrecentage + Math.round(100/6);
-            p.innerHTML = 'You won ' + winningPrecentage + '%';
+            winningPrecentage = winningPrecentage + (100/6);
+            p.innerHTML = 'You won ' + Math.round(winningPrecentage) + '%';
             console.log(p);
             winning.appendChild(p);
 

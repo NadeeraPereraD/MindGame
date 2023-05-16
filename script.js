@@ -100,9 +100,16 @@ function checkMatch(){
             cards[optionOne.id].setAttribute('src', 'Images/tick.png');
             cards[optionTwo.id].setAttribute('src', 'Images/tick.png');
             winningPrecentage = winningPrecentage + (100/6);
-            p.innerHTML = 'You won ' + Math.round(winningPrecentage) + '%';
+            if(Math.round(winningPrecentage) == 100){
+                p.innerHTML = 'You won ...';                    
+            } else{
+                p.innerHTML = 'You won ' + Math.round(winningPrecentage) + '%';
+            }
+            
             console.log(p);
             winning.appendChild(p);
+            cards[optionOne.id].removeEventListener('click', flipCard);
+            cards[optionTwo.id].removeEventListener('click', flipCard);
 
         } else {
             cards[optionOne.id].setAttribute('src', 'Images/question.jpeg');
